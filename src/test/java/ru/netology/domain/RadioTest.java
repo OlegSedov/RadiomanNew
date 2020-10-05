@@ -26,9 +26,9 @@ class RadioTest {
     @Test
     public void shouldIncreaseVolumeFromMaxVolume() {
         Radio radio = new Radio();
-        radio.setCurrentVolume(10);
+        radio.setCurrentVolume(100);
         radio.increaseVolume();
-        assertEquals(10, radio.getCurrentVolume());
+        assertEquals(100, radio.getCurrentVolume());
     }
 
     @Test
@@ -42,9 +42,9 @@ class RadioTest {
     @Test
     public void shouldIncreaseVolumeToAnyValue() {
         Radio radio = new Radio();
-        radio.setCurrentVolume(99);
+        radio.setCurrentVolume(110);
         radio.increaseVolume();
-        assertEquals(10, radio.getCurrentVolume());
+        assertEquals(100, radio.getCurrentVolume());
     }
 
     @Test
@@ -57,19 +57,33 @@ class RadioTest {
 
     @Test
     void shouldNextStation() {
-        Radio radio = new Radio();
-        radio.setCurrentStation(3);
+        Radio radio = new Radio(9,4);
         radio.increaseStation();
-        assertEquals(4, radio.getCurrentStation());
+        assertEquals(5, radio.getCurrentStation());
     }
+
+//    @Test
+//    void shouldNextStation() {
+//        Radio radio = new Radio();
+//        radio.setCurrentStation(3);
+//        radio.increaseStation();
+//        assertEquals(4, radio.getCurrentStation());
+//    }
 
     @Test
     void shouldPreviousStation() {
-        Radio radio = new Radio();
-        radio.setCurrentStation(3);
+        Radio radio = new Radio (9, 5);
         radio.decreaseStation();
-        assertEquals(2, radio.getCurrentStation());
+        assertEquals(4, radio.getCurrentStation());
     }
+
+//    @Test
+//    void shouldPreviousStation() {
+//        Radio radio = new Radio();
+//        radio.setCurrentStation(3);
+//        radio.decreaseStation();
+//        assertEquals(2, radio.getCurrentStation());
+//    }
 
     @Test
     public void shouldSetDesiredStation() {
@@ -80,19 +94,34 @@ class RadioTest {
 
     @Test
     public void shouldDecreaseStationToMin() {
-        Radio radio = new Radio();
-        radio.setCurrentStation(0);
+        int expectedMaxStation = 20;
+        Radio radio = new Radio (expectedMaxStation, 0);
         radio.decreaseStation();
-        assertEquals(9, radio.getCurrentStation());
+        assertEquals(expectedMaxStation, radio.getCurrentStation());
     }
+
+//    @Test
+//    public void shouldDecreaseStationToMin() {
+//        Radio radio = new Radio();
+//        radio.setCurrentStation(0);
+//        radio.decreaseStation();
+//        assertEquals(9, radio.getCurrentStation());
+//    }
 
     @Test
     public void shouldIncreaseStationToMax() {
-        Radio radio = new Radio();
-        radio.setCurrentStation(9);
+        Radio radio = new Radio(20, 20);
         radio.increaseStation();
         assertEquals(0, radio.getCurrentStation());
     }
+
+//    @Test
+//    public void shouldIncreaseStationToMax() {
+//        Radio radio = new Radio();
+//        radio.setCurrentStation(9);
+//        radio.increaseStation();
+//        assertEquals(0, radio.getCurrentStation());
+//    }
 
     @Test
     public void shouldSetDesiredAnyStation() {
